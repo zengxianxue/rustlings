@@ -3,13 +3,11 @@
 // adding, changing or removing any of them.
 // Execute `rustlings hint move_semantics5` for hints :)
 
-// I AM NOT DONE
-
 fn main() {
     let mut x = 100;
     let y = &mut x;
+    *y += 100; // 编译器推导 `mut y` 在此结束
     let z = &mut x;
-    *y += 100;
     *z += 1000;
     assert_eq!(x, 1200);
 }
