@@ -8,14 +8,20 @@
 // which appends "Bar" to any object
 // implementing this trait.
 
-// I AM NOT DONE
-
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
 impl AppendBar for String {
     //Add your code here
+    // trait 中的`append_bar`方法是 `self` ==> `self:Self`（需要move）。实现的时候可以使用`mut self` ==> `mut self:Self`
+    // 函数传参同变量绑定类似，可以理解为：
+    //        let self = Self; // 绑定Self到self
+    //        let mut self = self; // 将self move为一个可变的self
+    fn append_bar(mut self) -> Self {
+        self.push_str("Bar");
+        self
+    }
 }
 
 fn main() {
